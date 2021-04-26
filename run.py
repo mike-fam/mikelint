@@ -1,5 +1,6 @@
 from astroid import parse, Module
-
+import pprint
+from linter.analysers.naming import NamingAnalyser
 from linter.tree import SyntaxTree
 
 
@@ -12,8 +13,11 @@ def main():
     #         print(member.body)
     print(module.repr_tree())
     tree = SyntaxTree(module)
-    for node in tree.post_order():
-        print(node)
+    analyser = NamingAnalyser(tree)
+    analyser.run()
+    pprint.pprint(analyser.get_results())
+
+    # analyser.check_variable_snake_case()
 
 
 if __name__ == '__main__':
