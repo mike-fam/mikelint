@@ -57,6 +57,8 @@ class NamingAnalyser(Analyser):
                                  "line {}:\n\t{}")
     def check_potential_bad_variable_names(self):
         """ Checks for potential bad naming, i.e. names with 1-2 characters """
+        # TODO: This is only temporary
+        whitelist = ["x", "y"]
         results: list[tuple[str, int, str]] = []
         for node in self._tree.pre_order():
             if not isinstance(node, AssignName):
@@ -68,6 +70,9 @@ class NamingAnalyser(Analyser):
                 continue
 
             if len(node.name) >= 3:
+                continue
+
+            if node.name in whitelist:
                 continue
 
             results.append((node.name, node.lineno,

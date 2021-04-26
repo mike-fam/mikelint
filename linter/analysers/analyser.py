@@ -23,14 +23,16 @@ def register_check(error_format: str):
 
 
 class Analyser:
-    def __init__(self, tree: SyntaxTree):
+    def __init__(self, tree: SyntaxTree, source: list[str]):
         """
-
+        Constructor
         Args:
-            tree:
+            tree: syntax tree
+            source: list of lines from source code
         """
         self._tree = tree
         self._check_results: dict[str, Violation] = {}
+        self._source = source
         # TODO: manage tree
         #   manage rules, maybe config file
 
@@ -61,6 +63,10 @@ class Analyser:
             results: list of violation results
         """
         self._check_results[checker_name]["values"].extend(results)
+
+    def get_line(self, line_number: int) -> str:
+        """Returns line given line number"""
+        return self._source[line_number - 1].strip()
 
     def run(self):
         """
