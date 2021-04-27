@@ -1,0 +1,24 @@
+Readability:
+    Program Structure:
+        - StructureAnalyser
+    Identifier Names:
+        - NameAnalyser
+    Symbolic Constants:
+        - ScopeAnalyser.check_constants_used
+Documentation:
+    Comment Clarity: []
+    Informative Docstrings:
+        - DocstringAnalyser
+    Description of Logic: []
+Object-Oriented Program Structure:
+    Classes & Instances:
+        - ClassInstanceAnalyser
+    Encapsulation:
+        - EncapsulationAnalyser
+    Inheritance & Polymorphism: []  # TODO
+AlgorithmicLogic:
+    Single Instance of Logic: []  # TODO?
+    Variable Scope: # TODO attributes assigned outside init
+        - ScopeAnalyser.check_globals
+    Control Structures:
+        - StructureAnalyser
