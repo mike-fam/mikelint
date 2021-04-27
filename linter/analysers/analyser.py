@@ -73,7 +73,7 @@ class Analyser:
 
     def get_line(self, line_number: int) -> str:
         """Returns line given line number"""
-        return self._source[line_number - 1].strip()
+        return self._source[line_number].strip()
 
     def run(self):
         """

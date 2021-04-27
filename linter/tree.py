@@ -26,10 +26,10 @@ class SyntaxTree:
     def pre_order_traversal(node: NodeNG) -> Iterator[NodeNG]:
         yield node
         for child_node in node.get_children():
-            yield from SyntaxTree.post_order_traversal(child_node)
+            yield from SyntaxTree.pre_order_traversal(child_node)
 
-    def post_order(self):
+    def post_order(self) -> Iterator[NodeNG]:
         yield from self.post_order_traversal(self._root)
 
-    def pre_order(self):
+    def pre_order(self) -> Iterator[NodeNG]:
         yield from self.pre_order_traversal(self._root)
