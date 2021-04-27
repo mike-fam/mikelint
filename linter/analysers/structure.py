@@ -44,17 +44,20 @@ class StructureAnalyser(Analyser):
             result.append((start, end, "\n".join(self._source[start - 1:end])))
         return result
 
-    @register_check("Line {}: Control block does nothing\n\t{}")
+    @register_check("Line {}: Control structure block does nothing\n")
     def check_structure_empty(self):
         """Checks if control structures blocks just have `pass` in them"""
         # line_start, line_end, block
-        result: list[tuple[int, str]] = []
-        complexities: dict[NodeNG, int] = {}
+        result: list[tuple[int]] = []
         for node in self._tree.post_order():
             if not isinstance(node, BlockRangeMixIn):
                 continue
-            children = list(node.body)
-            if len(children) == 1 and isinstance(children[0], Pass):
-                result.append((node.lineno, node.as_string()))
+            if len(node.body) == 1 and isinstance((pass_ := node.body[0]),
+                                                  Pass):
+                result.append((pass_.lineno))
+            if getattr(node, "orelse", None) is not None and \
+                    len(node.orelse) == 1 and \
+                    isinstance((pass_ := node.orelse[0]), Pass):
+                result.append((pass_.lineno))
         return result
 

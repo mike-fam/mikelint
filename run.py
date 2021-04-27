@@ -10,7 +10,7 @@ from linter.tree import SyntaxTree
 
 
 def main():
-    with open("resources/test.py") as fin:
+    with open("resources/test2.py") as fin:
         source = fin.read()
     module: Module = parse(source)
     lines = source.splitlines()
@@ -20,7 +20,7 @@ def main():
     # for member in members:
     #     if isinstance(member, ast.ClassDef):
     #         print(member.body)
-    # print(module.repr_tree())
+    print(module.repr_tree())
     # print("-" * 200)
     tree = SyntaxTree(module)
     analyser = StructureAnalyser(tree, lines)
