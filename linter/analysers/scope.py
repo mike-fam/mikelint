@@ -17,7 +17,7 @@ class ScopeAnalyser(Analyser):
             result.append((node.lineno, self.get_line(node.lineno)))
         return result
 
-    @register_check("Magic values used on line {}:\n\t{}")
+    @register_check("Line {}: Magic values used\n\t{}")
     def check_constants_used(self):
         """Check if any value that could have been used as constants"""
         # lineno, line

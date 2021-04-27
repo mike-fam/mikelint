@@ -1,6 +1,8 @@
 from dataclasses import dataclass
+from typing import Union
 
-from linter.type_hints import ViolationResult
+
+ViolationResult = tuple[Union[str, int, float]]
 
 
 @dataclass

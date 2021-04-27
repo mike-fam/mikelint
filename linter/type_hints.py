@@ -1,4 +1,7 @@
-from typing import Union
+from linter.violation import Violation
 
+CriteriaConfig = dict[str, list]
 
-ViolationResult = tuple[Union[str, int, float]]
+Config = dict[str, CriteriaConfig]
+
+CheckOutput = dict[str, dict[str, Violation]]

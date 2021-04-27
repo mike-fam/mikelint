@@ -1,5 +1,5 @@
 from linter.analysers.analyser import Analyser, register_check
-from astroid import ClassDef, Call, Attribute
+from astroid import ClassDef, Call, Attribute, Name
 
 
 class ClassInstanceAnalyser(Analyser):
@@ -20,6 +20,8 @@ class ClassInstanceAnalyser(Analyser):
                 continue
             func = node.func
             if not isinstance(func, Attribute):
+                continue
+            if not isinstance(func.expr, Name):
                 continue
             if func.expr.name in class_names:
                 result.append((node.lineno, node.as_string()))

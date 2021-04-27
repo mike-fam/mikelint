@@ -6,7 +6,7 @@ class EncapsulationAnalyser(Analyser):
     @register_check("Private attribute `{}` accessed outside class on line {}"
                     ":\n\t{}")
     def check_private_attribute_accessed_outside_class(self):
-        """ Checks if private attribute is accessed outside class """
+        """Checks if private attribute is accessed outside class """
         result: list[tuple[str, int, str]] = []
         for node in self._tree.pre_order():
             if not isinstance(node, Attribute):
@@ -23,7 +23,7 @@ class EncapsulationAnalyser(Analyser):
     @register_check("Private attribute `{}` defined outside class on line {}:\n"
                     "\t{}")
     def check_private_attribute_defined_outside_class(self):
-        """ Checks if private attribute is defined outside class """
+        """Checks if private attribute is defined outside class """
         result: list[tuple[str, int, str]] = []
         for node in self._tree.pre_order():
             if not isinstance(node, AssignAttr):

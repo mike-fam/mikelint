@@ -4,8 +4,7 @@ from typing import Callable
 
 from linter.analysers.analyse_error import CheckError
 from linter.tree import SyntaxTree
-from linter.type_hints import ViolationResult
-from linter.violation import Violation
+from linter.violation import Violation, ViolationResult
 
 
 def register_check(error_format: str):
@@ -70,7 +69,7 @@ class Analyser:
 
     def get_line(self, line_number: int) -> str:
         """Returns line given line number"""
-        return self._source[line_number].strip()
+        return self._source[line_number - 1].strip()
 
     def run(self):
         """

@@ -1,8 +1,8 @@
 Readability:
     Program Structure:
-        - StructureAnalyser
+        - StructureAnalyser.check_line_length
     Identifier Names:
-        - NameAnalyser
+        - NamingAnalyser
     Symbolic Constants:
         - ScopeAnalyser.check_constants_used
 Documentation:
@@ -21,4 +21,5 @@ AlgorithmicLogic:
     Variable Scope: # TODO attributes assigned outside init
         - ScopeAnalyser.check_globals
     Control Structures:
-        - StructureAnalyser
+        - StructureAnalyser.check_structure_complexity
+        - StructureAnalyser.check_structure_empty

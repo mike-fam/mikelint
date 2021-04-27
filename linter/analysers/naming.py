@@ -14,7 +14,7 @@ class NamingAnalyser(Analyser):
     @register_check(error_format="Non snake-case variable '{}' defined on line "
                                  "{}:\n\t{}")
     def check_variable_snake_case(self):
-        """ Checks for non snake-case variable naming """
+        """Checks for non snake-case variable naming """
         results: list[tuple[str, int, str]] = []
         for node in self._tree.pre_order():
             if not isinstance(node, AssignName):
@@ -28,7 +28,7 @@ class NamingAnalyser(Analyser):
     @register_check(error_format="Non snake-case function/method name '{}' "
                                  "defined on line {}:\n\t{}")
     def check_method_snake_case(self):
-        """ Checks for non snake-case function and method naming """
+        """Checks for non snake-case function and method naming """
         results: list[tuple[str, int, str]] = []
         for node in self._tree.pre_order():
             if not isinstance(node, FunctionDef):
@@ -42,7 +42,7 @@ class NamingAnalyser(Analyser):
     @register_check(error_format="Non snake-case attribute '{}' defined on "
                                  "line {}:\n\t{}")
     def check_attribute_snake_case(self):
-        """ Checks for non snake-case attrbute naming """
+        """Checks for non snake-case attrbute naming """
         results: list[tuple[str, int, str]] = []
         for node in self._tree.pre_order():
             if not isinstance(node, AssignAttr):
@@ -56,7 +56,7 @@ class NamingAnalyser(Analyser):
     @register_check(error_format="Potential bad variable name '{}' defined on "
                                  "line {}:\n\t{}")
     def check_potential_bad_variable_names(self):
-        """ Checks for potential bad naming, i.e. names with 1-2 characters """
+        """Checks for potential bad naming, i.e. names with 1-2 characters """
         # TODO: This is only temporary
         whitelist = ["x", "y"]
         results: list[tuple[str, int, str]] = []
@@ -82,7 +82,7 @@ class NamingAnalyser(Analyser):
     @register_check(error_format="Hungarian notation variable '{}' used on "
                                  "line {}:\n\t{}")
     def check_hungarian_notation_variable(self):
-        """ Checks for variable names with hungarian notation """
+        """Checks for variable names with hungarian notation """
         results: list[tuple[str, int, str]] = []
         for node in self._tree.pre_order():
             if not isinstance(node, AssignName):
@@ -96,7 +96,7 @@ class NamingAnalyser(Analyser):
     @register_check(error_format="Hungarian notation attribute '{}' used on "
                                  "line {}:\n\t{}")
     def check_hungarian_notation_attribute(self):
-        """ Checks for attribute names with hungarian notation """
+        """Checks for attribute names with hungarian notation """
         results: list[tuple[str, int, str]] = []
         for node in self._tree.pre_order():
             if not isinstance(node, AssignAttr):
@@ -109,13 +109,13 @@ class NamingAnalyser(Analyser):
 
     @register_check(error_format="Hungarian notation in function/method name"
                                  " '{}' defined on line {}:\n\t{}")
-    def check_method_snake_case(self):
-        """ Checks for hungarian notation function and method naming """
+    def check_hungarian_notation_method(self):
+        """Checks for hungarian notation function and method naming """
         results: list[tuple[str, int, str]] = []
         for node in self._tree.pre_order():
             if not isinstance(node, FunctionDef):
                 continue
-            if self.HUNGARIAN_NOTATION.search(node.name):
+            if not self.HUNGARIAN_NOTATION.search(node.name):
                 continue
             results.append((node.name, node.lineno,
                             node.as_string().strip().splitlines()[0]))

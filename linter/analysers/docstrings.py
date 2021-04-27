@@ -8,6 +8,7 @@ from astroid import ClassDef, FunctionDef, AssignName, Name
 class DocstringAnalyser(Analyser):
     @register_check("Class {} missing docstring")
     def check_class_docstrings(self):
+        """Checks if classes missing docstrings """
         result: list[tuple[str]] = []
         for node in self._tree.pre_order():
             if not isinstance(node, ClassDef):
@@ -22,7 +23,7 @@ class DocstringAnalyser(Analyser):
                     "\tMissing fields: {}\n"
                     "\tExtra fields: {}\n")
     def check_method_docstring_unexpected_missing(self):
-        """ Checks if docstring has missing or extra fields """
+        """Checks if docstring has missing or extra fields """
         result: list[tuple[str, int, str, str]] = []
         for node in self._tree.pre_order():
             signatures = self._get_expected_and_actual_method_parameters(node)
@@ -78,6 +79,7 @@ class DocstringAnalyser(Analyser):
                     "\n\tFunction/Method name: {} on line {}\n"
                     "\tFields that lack param type: {}\n")
     def check_method_docstring_missing_type(self):
+        """Checks if docstrings have all the parameter types necessary"""
         # method_name, lineno, fields
         results: list[tuple[str, int, str]] = []
         for node in self._tree.pre_order():
@@ -101,7 +103,7 @@ class DocstringAnalyser(Analyser):
     @register_check("Cannot parse docstring of function/method:\n"
                     "\t{} (line {})")
     def check_docstring_correct_format(self):
-        """ Checks if docstring can be parsed correctly """
+        """Checks if docstring can be parsed correctly """
         result: list[tuple[str, int]] = []
         for node in self._tree.pre_order():
             if not isinstance(node, FunctionDef):
