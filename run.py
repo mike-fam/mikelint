@@ -1,6 +1,7 @@
 from astroid import parse, Module
 import pprint
 
+from linter.analysers.docstrings import DocstringAnalyser
 from linter.analysers.encapsulation import EncapsulationAnalyser
 from linter.analysers.naming import NamingAnalyser
 from linter.tree import SyntaxTree
@@ -12,13 +13,15 @@ def main():
     module: Module = parse(source)
     lines = source.splitlines()
     pprint.pprint(lines)
+    print("-" * 200)
     # members = module.body
     # for member in members:
     #     if isinstance(member, ast.ClassDef):
     #         print(member.body)
     print(module.repr_tree())
+    print("-" * 200)
     tree = SyntaxTree(module)
-    analyser = EncapsulationAnalyser(tree, lines)
+    analyser = DocstringAnalyser(tree, lines)
     analyser.run()
     pprint.pprint(analyser.get_results(), width=200)
 

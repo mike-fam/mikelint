@@ -42,6 +42,13 @@ class Analyser:
             raise CheckError(message)
 
     def register_checker(self, name, description, error_format):
+        """
+        Registers a new checker to this analyser
+        Args:
+            name: name of the checker, typically the method name
+            description: description of this checker
+            error_format: format string used to display violations
+        """
         self._check_results[name] = {
             "format": error_format,
             "description": description,
