@@ -22,11 +22,15 @@ class ScopeAnalyser(Analyser):
         """Check if any value that could have been used as constants"""
         # lineno, line
         result: list[tuple[int, str]] = []
+        checked_lines = []
         for node in self._tree.pre_order():
             if not isinstance(node, Const):
                 continue
             if node.value in self.MAGIC_WHITELIST:
                 continue
+            if node.lineno in checked_lines:
+                continue
             result.append((node.lineno, self.get_line(node.lineno)))
+            checked_lines.append(node.lineno)
         return result
 
