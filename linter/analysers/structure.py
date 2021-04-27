@@ -1,5 +1,3 @@
-import pprint
-
 from linter.analysers.analyser import Analyser, register_check
 
 from astroid.mixins import BlockRangeMixIn
@@ -18,7 +16,8 @@ class StructureAnalyser(Analyser):
             long_lines = [str(line_num + 1)
                           for line_num, line in enumerate(self._source)
                           if len(line) > length]
-            result.append((length, len(long_lines), ", ".join(long_lines)))
+            result.append((length, len(long_lines),
+                           ", ".join(long_lines) or None))
         return result
 
     @register_check("Lines ({}-{}): too many nested control structures\n{}")
@@ -55,7 +54,7 @@ class StructureAnalyser(Analyser):
             if len(node.body) == 1 and isinstance((pass_ := node.body[0]),
                                                   Pass):
                 result.append((pass_.lineno))
-            if getattr(node, "orelse", None) is not None and \
+            elif getattr(node, "orelse", None) is not None and \
                     len(node.orelse) == 1 and \
                     isinstance((pass_ := node.orelse[0]), Pass):
                 result.append((pass_.lineno))
