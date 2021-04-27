@@ -4,7 +4,8 @@ from typing import Callable
 
 from linter.analysers.analyse_error import CheckError
 from linter.tree import SyntaxTree
-from linter.type_hints import Violation, ViolationResult
+from linter.type_hints import ViolationResult
+from linter.violation import Violation
 
 
 def register_check(error_format: str):
@@ -41,7 +42,7 @@ class Analyser:
         if not condition:
             raise CheckError(message)
 
-    def register_checker(self, name, description, error_format):
+    def register_checker(self, name: str, description: str, error_format: str):
         """
         Registers a new checker to this analyser
         Args:
@@ -49,11 +50,7 @@ class Analyser:
             description: description of this checker
             error_format: format string used to display violations
         """
-        self._check_results[name] = {
-            "format": error_format,
-            "description": description,
-            "values": []
-        }
+        self._check_results[name] = Violation(description, error_format, [])
 
     def get_results(self) -> dict[str, Violation]:
         """
@@ -69,7 +66,7 @@ class Analyser:
             checker_name: name of the checker
             results: list of violation results
         """
-        self._check_results[checker_name]["values"].extend(results)
+        self._check_results[checker_name].values.extend(results)
 
     def get_line(self, line_number: int) -> str:
         """Returns line given line number"""
