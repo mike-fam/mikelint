@@ -2,7 +2,7 @@ from linter.analysers.analyser import Analyser, register_check
 
 from astroid.mixins import BlockRangeMixIn
 from astroid.node_classes import NodeNG
-from astroid import Pass
+from astroid import Pass, TryExcept, If
 
 
 class StructureAnalyser(Analyser):
@@ -31,6 +31,11 @@ class StructureAnalyser(Analyser):
         for node in self._tree.post_order():
             if not isinstance(node, BlockRangeMixIn):
                 continue
+            children = node.body.copy()
+            if isinstance(node, TryExcept):
+                children.extend(node.handlers)
+            if hasattr(node, "orelse") and len(node.orelse) > 1:
+                children.extend(child for child in node.orelse)
             complexities[node] = 1 + max((complexities.get(child, 0)
                                           for child in node.body),
                                          default=0)
