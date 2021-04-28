@@ -32,7 +32,7 @@ class StructureAnalyser(Analyser):
             if not isinstance(node, BlockRangeMixIn):
                 continue
             complexities[node] = 1 + max((complexities.get(child, 0)
-                                          for child in node.get_children()),
+                                          for child in node.body),
                                          default=0)
         checked_nodes = []
         for node, complexity in complexities.items():
