@@ -31,6 +31,8 @@ class Run:
         with open(config_file_name) as config_file:
             self._config = yaml.load(config_file, Loader=yaml.SafeLoader)
         self._results: dict[str, dict[str, Violation]] = {}
+        # Uncomment to see source tree
+        # print(module.repr_tree())
 
     def run(self):
         for analyser_cls in self._analysers:
