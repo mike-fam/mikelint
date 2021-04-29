@@ -11,7 +11,8 @@ class EncapsulationAnalyser(Analyser):
         for node in self._tree.pre_order():
             if not isinstance(node, Attribute):
                 continue
-            if not node.attrname.startswith("_"):
+            if not node.attrname.startswith("_") or \
+                    node.attrname.startswith("__"):
                 continue
             expr = node.expr
             if isinstance(expr, Name) and expr.name == "self":
@@ -28,7 +29,8 @@ class EncapsulationAnalyser(Analyser):
         for node in self._tree.pre_order():
             if not isinstance(node, AssignAttr):
                 continue
-            if not node.attrname.startswith("_"):
+            if not node.attrname.startswith("_") or \
+                    node.attrname.startswith("__"):
                 continue
             expr = node.expr
             if isinstance(expr, Name) and expr.name == "self":
@@ -45,7 +47,8 @@ class EncapsulationAnalyser(Analyser):
         for node in self._tree.pre_order():
             if not isinstance(node, AssignAttr):
                 continue
-            if node.attrname.startswith("_"):
+            if node.attrname.startswith("_") and \
+                    not node.attrname.startswith("__"):
                 continue
             expr = node.expr
             if not (isinstance(expr, Name) and expr.name == "self"):
