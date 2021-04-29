@@ -54,7 +54,7 @@ class DocstringAnalyser(Analyser):
             return
         try:
             docstring = parse(node.doc, Style.google)
-        except ParseError:
+        except:
             return
         actual = [(param.arg_name, param.type_name)
                   for param in docstring.params]
@@ -113,7 +113,7 @@ class DocstringAnalyser(Analyser):
             method_name = self._get_method_name(node)
             try:
                 parse(node.doc, Style.google)
-            except ParseError:
+            except:
                 result.append((method_name, node.lineno))
         return result
 
