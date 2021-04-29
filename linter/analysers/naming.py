@@ -19,6 +19,11 @@ class NamingAnalyser(Analyser):
         for node in self._tree.pre_order():
             if not isinstance(node, AssignName):
                 continue
+
+            # Ignore constants
+            if node.parent is self._tree.get_root():
+                continue
+
             if self.SNAKE_CASE.fullmatch(node.name):
                 continue
             results.append((node.name, node.lineno,
@@ -119,6 +124,20 @@ class NamingAnalyser(Analyser):
                 continue
             results.append((node.name, node.lineno,
                             node.as_string().strip().splitlines()[0]))
+        return results
+
+    @register_check("Line {}: Variables defined at global scope should be "
+                    "treated as constants:\n\t{}")
+    def check_constant_naming(self):
+        """Checks if constants are named in UPPER_SNAKE_CASE"""
+        # lineno, line
+        results: list[tuple[int, str]] = []
+        for node in self._tree.get_root().get_children():
+            if not isinstance(node, AssignName):
+                continue
+            if not self.CONSTANT_SNAKE_CASE.fullmatch(node.name):
+                continue
+            results.append((node.lineno, node.as_string()))
         return results
 
     @staticmethod
