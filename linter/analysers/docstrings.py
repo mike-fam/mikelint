@@ -1,11 +1,13 @@
+"""Docstring analyser"""
 from typing import Optional
+from astroid import ClassDef, FunctionDef
+from docstring_parser import parse, Style
 
 from linter.analysers.analyser import Analyser, register_check
-from docstring_parser import parse, Style, ParseError, DocstringParam
-from astroid import ClassDef, FunctionDef, AssignName, Name
 
 
 class DocstringAnalyser(Analyser):
+    """Analyses anything docstring related"""
     @register_check("Class {} missing docstring")
     def check_class_docstrings(self):
         """Checks if classes missing docstrings """
@@ -49,13 +51,13 @@ class DocstringAnalyser(Analyser):
     def _get_expected_and_actual_method_parameters(node: FunctionDef) -> \
             (list[tuple[str, Optional[str]]], list[tuple[str, Optional[str]]]):
         if not isinstance(node, FunctionDef):
-            return
+            return None
         if not node.doc:
-            return
+            return None
         try:
             docstring = parse(node.doc, Style.google)
         except:
-            return
+            return None
         actual = [(param.arg_name, param.type_name)
                   for param in docstring.params]
         expected = [(arg.name, annotation and annotation.name)
@@ -116,6 +118,3 @@ class DocstringAnalyser(Analyser):
             except:
                 result.append((method_name, node.lineno))
         return result
-
-
-

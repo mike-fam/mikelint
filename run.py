@@ -13,8 +13,8 @@ from linter.analysers.scope import ScopeAnalyser
 from linter.analysers.structure import StructureAnalyser
 from linter.formatters.base_formatter import BaseFormatter
 from linter.formatters.formatter import Formatter
-from linter.tree import SyntaxTree
-from linter.violation import Violation
+from linter.utils.tree import SyntaxTree
+from linter.utils.violation import BaseViolation
 
 
 class Run:
@@ -30,7 +30,7 @@ class Run:
         self._tree = SyntaxTree(module)
         with open(config_file_name) as config_file:
             self._config = yaml.load(config_file, Loader=yaml.SafeLoader)
-        self._results: dict[str, dict[str, Violation]] = {}
+        self._results: dict[str, dict[str, BaseViolation]] = {}
         # Uncomment to see source tree
         # print(module.repr_tree())
 

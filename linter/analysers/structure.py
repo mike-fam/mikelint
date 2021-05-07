@@ -1,11 +1,16 @@
-from linter.analysers.analyser import Analyser, register_check
-
+"""
+Analyses code structure
+"""
 from astroid.mixins import BlockRangeMixIn
 from astroid.node_classes import NodeNG
-from astroid import Pass, TryExcept, If
+from astroid import Pass, TryExcept
+
+from linter.analysers.analyser import Analyser, register_check
 
 
 class StructureAnalyser(Analyser):
+    """Structure analyser, checks if general structure is ok"""
+
     @register_check("Number of lines longer than {0} characters: {1}\n"
                     "\tLines {2} are longer than {0} characters")
     def check_line_length(self):
@@ -69,4 +74,3 @@ class StructureAnalyser(Analyser):
                     isinstance((pass_ := node.orelse[0]), Pass):
                 result.append((pass_.lineno,))
         return result
-

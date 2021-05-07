@@ -1,8 +1,15 @@
+"""
+Analyse encapsulation violations
+"""
 from astroid import Attribute, Name, AssignAttr
 from linter.analysers.analyser import Analyser, register_check
 
 
 class EncapsulationAnalyser(Analyser):
+    """
+    Encapsulation analyser, checks if class members follow best
+    access control practices
+    """
     @register_check("Private attribute `{}` accessed outside class on line {}"
                     ":\n\t{}")
     def check_private_attribute_accessed_outside_class(self):
@@ -56,4 +63,3 @@ class EncapsulationAnalyser(Analyser):
             result.append((node.attrname, node.lineno,
                            self.get_line(node.lineno)))
         return result
-

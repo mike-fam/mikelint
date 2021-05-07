@@ -1,37 +1,31 @@
+"""
+Abstract formatter
+Used to convert error outputs to user friendly output to be displayed on user
+interface
+"""
 from linter.type_hints import Config, CheckOutput
-from linter.violation import Violation
 
 
 class Formatter:
+    """Abstract formatter"""
     def __init__(self, config: Config, check_output: CheckOutput):
         """
         Constructor
         Args:
-            config:
-            check_output:
+            config: configuration file that links criteria to tests
+            check_output: output from checkers
         """
         self._config = config
         self._check_output = check_output
 
     def format(self) -> str:
+        """Returns formatted string to be displayed on screen"""
         raise NotImplementedError
 
-    @staticmethod
-    def _indent(multiline_str: str, indent=4):
-        return ("\n" + " " * indent).join(multiline_str.splitlines())
+    def get_config(self) -> Config:
+        """Returns configuration object"""
+        return self._config
 
-    @staticmethod
-    def _new_line(string: str):
-        return string + "\n"
-
-    @staticmethod
-    def format_violation(violation: Violation):
-        output = Formatter._new_line(violation.description)
-        for format_values in violation.values:
-            output += Formatter._new_line(
-                Formatter._indent(violation.format.format(*format_values)))
-        if not violation.values:
-            output += Formatter._new_line(Formatter._indent("No violations "
-                                                            "found"))
-        return output
-
+    def get_check_output(self):
+        """Returns check output from analysers"""
+        return self._check_output

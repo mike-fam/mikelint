@@ -1,13 +1,20 @@
+"""
+Abstract analyser
+"""
 from functools import wraps
 from inspect import getmembers, ismethod
 from typing import Callable
 
-from linter.analysers.analyse_error import CheckError
-from linter.tree import SyntaxTree
-from linter.violation import Violation, ViolationResult
+from linter.utils.tree import SyntaxTree
+from linter.utils.violation import BaseViolation, ViolationResult
 
 
 def register_check(error_format: str):
+    """
+    Registers a new checker to an analyser
+    Args:
+        error_format: error format of violation
+    """
     def decorator(check_method: Callable):
         @wraps(check_method)
         def wrapper(*args, **kwargs):
@@ -23,6 +30,7 @@ def register_check(error_format: str):
 
 
 class Analyser:
+    """Abstract base analyser"""
     def __init__(self, tree: SyntaxTree, source: list[str]):
         """
         Constructor
@@ -31,15 +39,8 @@ class Analyser:
             source: list of lines from source code
         """
         self._tree = tree
-        self._check_results: dict[str, Violation] = {}
+        self._check_results: dict[str, BaseViolation] = {}
         self._source = source
-        # TODO: manage tree
-        #   manage rules, maybe config file
-
-    @staticmethod
-    def check(condition: bool, message: str):
-        if not condition:
-            raise CheckError(message)
 
     def register_checker(self, name: str, description: str, error_format: str):
         """
@@ -49,9 +50,9 @@ class Analyser:
             description: description of this checker
             error_format: format string used to display violations
         """
-        self._check_results[name] = Violation(description, error_format, [])
+        self._check_results[name] = BaseViolation(description, error_format, [])
 
-    def get_results(self) -> dict[str, Violation]:
+    def get_results(self) -> dict[str, BaseViolation]:
         """
         Returns results of all checkers of this analyser
         """

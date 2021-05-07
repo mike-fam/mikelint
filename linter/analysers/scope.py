@@ -1,8 +1,12 @@
-from linter.analysers.analyser import Analyser, register_check
+"""
+Analyse scope violations
+"""
 from astroid import Global, Const
+from linter.analysers.analyser import Analyser, register_check
 
 
 class ScopeAnalyser(Analyser):
+    """Analyser checking for scope violations"""
     # TODO: Maybe this is too strict?
     MAGIC_WHITELIST = ["", 0, 1, -1, " ", 100, True, False, None, "__main__"]
 
@@ -33,4 +37,3 @@ class ScopeAnalyser(Analyser):
             result.append((node.lineno, self.get_line(node.lineno)))
             checked_lines.append(node.lineno)
         return result
-

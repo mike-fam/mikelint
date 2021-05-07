@@ -1,2 +1,7 @@
+"""
+Base check error
+"""
+
+
 class CheckError(Exception):
-    pass
+    """Error raised when a violation is found"""

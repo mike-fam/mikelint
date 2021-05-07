@@ -1,10 +1,12 @@
+"""Naming analyser, checks everything name related"""
+import re
 from astroid import AssignName, AssignAttr, For, Call, FunctionDef
 
 from linter.analysers.analyser import Analyser, register_check
-import re
 
 
 class NamingAnalyser(Analyser):
+    """Analyse good naming"""
     SNAKE_CASE = re.compile(r"[a-z_][a-z0-9_]{0,30}$")
     CONSTANT_SNAKE_CASE = re.compile(r"(([A-Z_][A-Z0-9_]*)|(__.*__))$")
     # FIXME: might give false positives
@@ -62,8 +64,6 @@ class NamingAnalyser(Analyser):
                                  "line {}:\n\t{}")
     def check_potential_bad_variable_names(self):
         """Checks for potential bad naming, i.e. names with 1-2 characters """
-        # TODO: This is only temporary
-        whitelist = ["x", "y"]
         results: list[tuple[str, int, str]] = []
         for node in self._tree.pre_order():
             if not isinstance(node, AssignName):
@@ -75,9 +75,6 @@ class NamingAnalyser(Analyser):
                 continue
 
             if len(node.name) >= 3:
-                continue
-
-            if node.name in whitelist:
                 continue
 
             results.append((node.name, node.lineno,
@@ -150,5 +147,3 @@ class NamingAnalyser(Analyser):
         if not isinstance(iter_on, Call):
             return False
         return iter_on.func.as_string() == "range"
-
-
