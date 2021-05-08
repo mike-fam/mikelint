@@ -1,3 +1,3 @@
 """__init__"""
 
-__all__ = ["naming", "analyser", "analyse_error"]
+__all__ = ["naming", "analyser"]
