@@ -1,7 +1,7 @@
 """
 A simple formatter to display analyser output in similar format as testrunner
 """
-from linter.formatters.formatter import Formatter
+from formatter_ import Formatter
 from linter.utils.strings import new_line, indent
 from linter.utils.violation import BaseViolation
 

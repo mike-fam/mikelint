@@ -8,4 +8,6 @@ CriteriaConfig = dict[str, list]
 
 Config = dict[str, CriteriaConfig]
 
-CheckOutput = dict[str, dict[str, BaseViolation]]
+AnalyserResults = dict[str, BaseViolation]
+
+CheckOutput = dict[str, AnalyserResults]

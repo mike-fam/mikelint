@@ -4,15 +4,16 @@ from astroid import parse, Module
 import argparse
 import yaml
 
-from linter.analysers.analyser import Analyser
-from linter.analysers.class_instance import ClassInstanceAnalyser
-from linter.analysers.docstrings import DocstringAnalyser
-from linter.analysers.encapsulation import EncapsulationAnalyser
-from linter.analysers.naming import NamingAnalyser
-from linter.analysers.scope import ScopeAnalyser
-from linter.analysers.structure import StructureAnalyser
-from linter.formatters.base_formatter import BaseFormatter
-from linter.formatters.formatter import Formatter
+from linter.analysers import (
+    Analyser,
+    ClassInstanceAnalyser,
+    DocstringAnalyser,
+    EncapsulationAnalyser,
+    NamingAnalyser,
+    ScopeAnalyser,
+    StructureAnalyser
+)
+from linter.formatters import Formatter, BaseFormatter
 from linter.utils.tree import SyntaxTree
 from linter.utils.violation import BaseViolation
 

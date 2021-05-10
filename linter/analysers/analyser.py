@@ -5,6 +5,7 @@ from functools import wraps
 from inspect import getmembers, ismethod
 from typing import Callable
 
+from linter.type_hints import AnalyserResults
 from linter.utils.tree import SyntaxTree
 from linter.utils.violation import BaseViolation, ViolationResult
 
@@ -39,7 +40,7 @@ class Analyser:
             source: list of lines from source code
         """
         self._tree = tree
-        self._check_results: dict[str, BaseViolation] = {}
+        self._check_results: AnalyserResults = {}
         self._source = source
 
     def register_checker(self, name: str, description: str, error_format: str):
@@ -52,7 +53,7 @@ class Analyser:
         """
         self._check_results[name] = BaseViolation(description, error_format, [])
 
-    def get_results(self) -> dict[str, BaseViolation]:
+    def get_results(self) -> AnalyserResults:
         """
         Returns results of all checkers of this analyser
         """

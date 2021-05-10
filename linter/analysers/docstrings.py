@@ -3,7 +3,7 @@ from typing import Optional
 from astroid import ClassDef, FunctionDef
 from docstring_parser import parse, Style
 
-from linter.analysers.analyser import Analyser, register_check
+from analyser import Analyser, register_check
 
 
 class DocstringAnalyser(Analyser):

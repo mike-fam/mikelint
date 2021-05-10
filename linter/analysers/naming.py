@@ -2,7 +2,7 @@
 import re
 from astroid import AssignName, AssignAttr, For, Call, FunctionDef
 
-from linter.analysers.analyser import Analyser, register_check
+from analyser import Analyser, register_check
 
 
 class NamingAnalyser(Analyser):

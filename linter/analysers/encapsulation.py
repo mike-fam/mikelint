@@ -2,7 +2,8 @@
 Analyse encapsulation violations
 """
 from astroid import Attribute, Name, AssignAttr
-from linter.analysers.analyser import Analyser, register_check
+
+from analyser import Analyser, register_check
 
 
 class EncapsulationAnalyser(Analyser):

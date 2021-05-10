@@ -5,7 +5,7 @@ from astroid.mixins import BlockRangeMixIn
 from astroid.node_classes import NodeNG
 from astroid import Pass, TryExcept
 
-from linter.analysers.analyser import Analyser, register_check
+from analyser import Analyser, register_check
 
 
 class StructureAnalyser(Analyser):

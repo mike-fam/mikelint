@@ -24,4 +24,13 @@ You need Python 3.9 or above to run this project. Python 3.8 or below will not w
    configuration file and `some_file.py` being the file to run the analyser on.
    
 ## How to contribute
-TODO
+If you want to contribute, DM me on Facebook or email me at mikepham1207@gmail.com.
+I'll give you editor access to the repo.
+
+Then, clone this repo and make a new branch, and write your implementation on that 
+branch. Make a new pull request when you're ready. You'll be asked to go through a 
+checklist before opening the PR. 
+
+Once I approve the PR, you can merge it to the main branch.
+
+Check out the documentation in the `docs` directory for more implementation details.

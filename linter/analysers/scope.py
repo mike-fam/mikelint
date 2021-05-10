@@ -2,7 +2,8 @@
 Analyse scope violations
 """
 from astroid import Global, Const
-from linter.analysers.analyser import Analyser, register_check
+
+from analyser import Analyser, register_check
 
 
 class ScopeAnalyser(Analyser):

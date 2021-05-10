@@ -2,7 +2,7 @@
 Analyser for class vs instance usage
 """
 from astroid import ClassDef, Call, Attribute, Name
-from linter.analysers.analyser import Analyser, register_check
+from analyser import Analyser, register_check
 
 
 class ClassInstanceAnalyser(Analyser):
