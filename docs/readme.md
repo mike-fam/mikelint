@@ -60,4 +60,5 @@ namely `BaseFormatter`.
 All formatters must override the `format` method from the abstract superclass.
 Formatters have an attribute called `_check_output`, which is a dictionary with 
 keys as the names of the analysers, and values as the result of the corresponding
-analyser, as described above.
+analyser, as described above. You need to convert this information to a human 
+friendly string and return that string in the `format` method.
