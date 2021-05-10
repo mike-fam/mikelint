@@ -1,4 +1,7 @@
 # How this works
+This project utilises the [astroid](http://pylint.pycqa.org/projects/astroid/en/latest/)
+package, which is a library wrapping the built-in [ast](https://docs.python.org/3/library/ast.html)
+module. AST provides a toolbox to process trees of the Python abstract syntax grammar.
 
 ## Analysers
 Analysers are classes that directly perform static analysis on the target file. 
