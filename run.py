@@ -60,7 +60,7 @@ def main():
     parser.add_argument("-c", "--config", help="Configuration file",
                         required=True)
     parser.add_argument("-s", "--source", help="Source file",
-                        required=True)
+                        required=True, action="append")
     args = parser.parse_args()
     analysers = [
         ClassInstanceAnalyser,

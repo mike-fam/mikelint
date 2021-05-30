@@ -11,7 +11,7 @@ class ClassInstanceAnalyser(Analyser):
                     "member of instance:\n\t{}")
     def check_method_call(self):
         """Checks if method call is treated as regular function instead of
-                member of class instance"""
+        member of class instance"""
         # filename, lineno, line
         result: list[tuple[str, int, str]] = []
         class_names: list[str] = []

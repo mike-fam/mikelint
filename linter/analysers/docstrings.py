@@ -46,7 +46,7 @@ class DocstringAnalyser(Analyser):
         for filename, attr in self._sources.items():
             for node in attr.tree.pre_order():
                 if not isinstance(node, FunctionDef):
-                    return None
+                    continue
                 signatures = self._get_expected_and_actual_method_parameters(node)
                 if signatures is None:
                     continue
@@ -79,7 +79,8 @@ class DocstringAnalyser(Analyser):
                   for param in docstring.params]
         expected = [(arg.name, annotation.as_string())
                     for arg, annotation in zip(node.args.args,
-                                               node.args.annotations)]
+                                               node.args.annotations)
+                    if annotation is not None]
         # Remove 'self' from expected signature
         if isinstance(node.parent, ClassDef):
             try:
@@ -112,7 +113,7 @@ class DocstringAnalyser(Analyser):
         for filename, attr in self._sources.items():
             for node in attr.tree.pre_order():
                 if not isinstance(node, FunctionDef):
-                    return None
+                    continue
                 signatures = self._get_expected_and_actual_method_parameters(node)
                 if signatures is None:
                     continue
