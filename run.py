@@ -14,6 +14,7 @@ from linter.analysers import (
     StructureAnalyser
 )
 from linter.formatters import Formatter, BaseFormatter
+from linter.type_hints import AnalyserHelper
 from linter.utils.tree import SyntaxTree
 from linter.utils.violation import BaseViolation
 
@@ -21,14 +22,19 @@ from linter.utils.violation import BaseViolation
 class Run:
     def __init__(self, analysers: list[Type[Analyser]],
                  formatter: Type[Formatter],
-                 source_file_name: str, config_file_name: str):
+                 source_file_names: list[str], config_file_name: str):
         self._analysers = analysers
         self._formatter_cls = formatter
-        with open(source_file_name) as fin:
-            source = fin.read()
-        module: Module = parse(source)
-        self._lines = source.splitlines()
-        self._tree = SyntaxTree(module)
+        self._analyser_helpers: dict[str, AnalyserHelper] = {}
+        for source_file_name in source_file_names:
+            with open(source_file_name) as fin:
+                source = fin.read()
+            module: Module = parse(source)
+            lines = source.splitlines()
+            tree = SyntaxTree(module)
+            self._analyser_helpers[source_file_name] = AnalyserHelper(tree,
+                                                                      lines)
+
         with open(config_file_name) as config_file:
             self._config = yaml.load(config_file, Loader=yaml.SafeLoader)
         self._results: dict[str, dict[str, BaseViolation]] = {}
@@ -37,7 +43,7 @@ class Run:
 
     def run(self):
         for analyser_cls in self._analysers:
-            analyser = analyser_cls(self._tree, self._lines)
+            analyser = analyser_cls(self._analyser_helpers)
             analyser.run()
             self._results[analyser_cls.__name__] = analyser.get_results()
 
