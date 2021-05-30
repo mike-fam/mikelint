@@ -20,7 +20,7 @@ class StructureAnalyser(Analyser):
         for length in [80, 100, 120, 140]:
             long_lines = [str(line_num + 1)
                           for line_num, line in enumerate(self._source)
-                          if len(line) > length]
+                          if len(line.rstrip()) > length]
             if not long_lines:
                 continue
             result.append((length, len(long_lines),

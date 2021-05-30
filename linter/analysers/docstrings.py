@@ -20,6 +20,18 @@ class DocstringAnalyser(Analyser):
             result.append((node.name,))
         return result
 
+    @register_check("Method/Function {} missing docstring")
+    def check_methods_function_docstrings(self):
+        """Checks if methods or functions missing docstrings """
+        result: list[tuple[str]] = []
+        for node in self._tree.pre_order():
+            if not isinstance(node, FunctionDef):
+                continue
+            if node.doc:
+                continue
+            result.append((self._get_method_name(node),))
+        return result
+
     @register_check("Missing/extra fields in docstrings of function/method:\n"
                     "\tFunction/Method name: {} on line {}\n"
                     "\tMissing fields: {}\n"
@@ -60,12 +72,19 @@ class DocstringAnalyser(Analyser):
             return None
         actual = [(param.arg_name, param.type_name)
                   for param in docstring.params]
-        expected = [(arg.name, annotation and annotation.name)
+        expected = [(arg.name, annotation.as_string())
                     for arg, annotation in zip(node.args.args,
                                                node.args.annotations)]
         # Remove 'self' from expected signature
         if isinstance(node.parent, ClassDef):
-            expected.pop(0)
+            try:
+                expected.pop(0)
+            except IndexError:
+                # for problems such as
+                # class A:
+                #     def method():  # no self here
+                # idek why they do this, but they did
+                pass
 
         return expected, actual
 

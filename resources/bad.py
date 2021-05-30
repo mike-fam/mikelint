@@ -1,3 +1,5 @@
+from typing import List
+
 a = 5
 b = ""
 class A:
@@ -30,7 +32,7 @@ class B(A):
             arg4: Ohter
         """
 
-def func(test: str, argumentCamel, A):
+def func(test: str, argumentCamel, A: List[int]):
     someVariable = "A"
     Another = "B"
     _HeHe = "C"
