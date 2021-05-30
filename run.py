@@ -27,8 +27,11 @@ class Run:
         self._formatter_cls = formatter
         self._analyser_helpers: dict[str, AnalyserHelper] = {}
         for source_file_name in source_file_names:
-            with open(source_file_name) as fin:
-                source = fin.read()
+            try:
+                with open(source_file_name) as fin:
+                    source = fin.read()
+            except FileNotFoundError:
+                print(f"{source_file_name} not found, skipping...")
             module: Module = parse(source)
             lines = source.splitlines()
             tree = SyntaxTree(module)
