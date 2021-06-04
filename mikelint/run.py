@@ -5,7 +5,7 @@ from astroid import parse, Module
 import argparse
 import yaml
 
-from linter.analysers import (
+from .analysers import (
     Analyser,
     ClassInstanceAnalyser,
     DocstringAnalyser,
@@ -14,10 +14,10 @@ from linter.analysers import (
     ScopeAnalyser,
     StructureAnalyser
 )
-from linter.formatters import Formatter, BaseFormatter
-from linter.type_hints import AnalyserHelper
-from linter.utils.tree import SyntaxTree
-from linter.utils.violation import BaseViolation
+from .formatters import Formatter, BaseFormatter
+from .type_hints import AnalyserHelper
+from .utils.tree import SyntaxTree
+from .utils.violation import BaseViolation
 
 
 class Run:

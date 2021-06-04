@@ -3,8 +3,8 @@ Type hints helpers
 """
 from dataclasses import dataclass
 
-from linter.utils.tree import SyntaxTree
-from linter.utils.violation import BaseViolation
+from .utils.tree import SyntaxTree
+from .utils.violation import BaseViolation
 
 
 CriteriaConfig = dict[str, list]

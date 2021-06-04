@@ -140,4 +140,4 @@ cython_debug/
 
 # Jetbrains
 .idea/
-config.example.yaml
+mikelint/config.yaml

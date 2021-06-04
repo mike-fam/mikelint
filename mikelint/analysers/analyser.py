@@ -5,9 +5,8 @@ from functools import wraps
 from inspect import getmembers, ismethod
 from typing import Callable
 
-from linter.type_hints import AnalyserResults, AnalyserHelper
-from linter.utils.tree import SyntaxTree
-from linter.utils.violation import BaseViolation, ViolationResult
+from ..type_hints import AnalyserResults, AnalyserHelper
+from ..utils import SyntaxTree, BaseViolation, ViolationResult
 
 
 def register_check(error_format: str):

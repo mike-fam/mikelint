@@ -1,5 +1,5 @@
 import pathlib
-from setuptools import setup
+from setuptools import setup, find_packages
 
 # The directory containing this file
 HERE = pathlib.Path(__file__).parent
@@ -22,16 +22,24 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3.9",
     ],
-    packages=['linter',
-              'linter.formatters',
-              'linter.utils',
-              'linter.analysers'],
+    packages=find_packages(where="mikelint"),
     include_package_data=True,
-    install_requires=[],
+    install_requires=[
+        "astroid>=2.5",
+        "docstring-parser>=0.7",
+        "isort>=5.8",
+        "lazy-object-proxy>=1.6",
+        "mccabe>=0.6",
+        "pylint>=2.8",
+        "PyYAML>=5.4",
+        "toml>=0.10",
+        "wrapt>=1.12"
+    ],
     python_requires=">=3.8",
     entry_points={
         "console_scripts": [
             "mikelint=run.__main__:main",
         ]
     },
+    package_dir={"": "mikelint"}
 )
