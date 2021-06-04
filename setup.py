@@ -10,7 +10,7 @@ README = (HERE / "README.md").read_text()
 # This call to setup() does all the work
 setup(
     name="mikelint",
-    version="1.0.1",
+    version="1.0.3",
     description="Linter used for CSSE1001 at UQ",
     long_description=README,
     long_description_content_type="text/markdown",
@@ -22,7 +22,7 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3.9",
     ],
-    packages=find_packages(where="mikelint"),
+    packages=["mikelint"],
     include_package_data=True,
     install_requires=[
         "astroid>=2.5",
@@ -41,5 +41,5 @@ setup(
             "run=run:main",
         ]
     },
-    package_dir={"": "mikelint"}
+    # package_dir={"": ""}
 )
