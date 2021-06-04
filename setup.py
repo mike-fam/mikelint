@@ -22,12 +22,16 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3.9",
     ],
-    packages=["reader"],
+    packages=['linter',
+              'linter.formatters',
+              'linter.utils',
+              'linter.analysers'],
     include_package_data=True,
     install_requires=[],
+    python_requires=">=3.8",
     entry_points={
         "console_scripts": [
-            "realpython=reader.__main__:main",
+            "mikelint=run.__main__:main",
         ]
     },
 )

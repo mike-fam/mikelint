@@ -1,3 +1,4 @@
+from pathlib import Path
 from typing import Type
 
 from astroid import parse, Module
@@ -35,8 +36,8 @@ class Run:
             module: Module = parse(source)
             lines = source.splitlines()
             tree = SyntaxTree(module)
-            self._analyser_helpers[source_file_name] = AnalyserHelper(tree,
-                                                                      lines)
+            filename = Path(source_file_name).name
+            self._analyser_helpers[filename] = AnalyserHelper(tree, lines)
 
         with open(config_file_name) as config_file:
             self._config = yaml.load(config_file, Loader=yaml.SafeLoader)

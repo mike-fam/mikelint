@@ -3,7 +3,7 @@ Analyse encapsulation violations
 """
 from astroid import Attribute, Name, AssignAttr
 
-from analyser import Analyser, register_check
+from .analyser import Analyser, register_check
 
 
 class EncapsulationAnalyser(Analyser):
