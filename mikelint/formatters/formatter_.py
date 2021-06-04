@@ -3,7 +3,7 @@ Abstract formatter
 Used to convert error outputs to user friendly output to be displayed on user
 interface
 """
-from .type_hints import Config, CheckOutput
+from ..type_hints import Config, CheckOutput
 
 
 class Formatter:

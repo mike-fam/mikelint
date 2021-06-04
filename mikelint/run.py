@@ -33,6 +33,7 @@ class Run:
                     source = fin.read()
             except FileNotFoundError:
                 print(f"{source_file_name} not found, skipping...")
+                continue
             module: Module = parse(source)
             lines = source.splitlines()
             tree = SyntaxTree(module)

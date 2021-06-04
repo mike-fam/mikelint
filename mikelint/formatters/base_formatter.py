@@ -2,7 +2,7 @@
 A simple formatter to display analyser output in similar format as testrunner
 """
 from .formatter_ import Formatter
-from .utils import new_line, indent, BaseViolation
+from ..utils import new_line, indent, BaseViolation
 
 BLOCK_WIDTH = 80
 HORIZONTAL_BORDER = "-" * (BLOCK_WIDTH - 2)
