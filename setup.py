@@ -30,7 +30,6 @@ setup(
         "isort>=5.8",
         "lazy-object-proxy>=1.6",
         "mccabe>=0.6",
-        "pylint>=2.8",
         "PyYAML>=5.4",
         "toml>=0.10",
         "wrapt>=1.12"
