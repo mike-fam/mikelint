@@ -1,0 +1,8 @@
+include *.md
+include *.sh
+include *.txt
+include *.yaml
+recursive-include docs *.md
+recursive-include mikelint *.py
+recursive-include mikelint *.yaml
+recursive-include resources *.py

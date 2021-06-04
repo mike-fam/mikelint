@@ -10,7 +10,7 @@ README = (HERE / "README.md").read_text()
 # This call to setup() does all the work
 setup(
     name="mikelint",
-    version="1.0.0",
+    version="1.0.1",
     description="Linter used for CSSE1001 at UQ",
     long_description=README,
     long_description_content_type="text/markdown",
@@ -38,7 +38,7 @@ setup(
     python_requires=">=3.8",
     entry_points={
         "console_scripts": [
-            "mikelint=run.__main__:main",
+            "run=run:main",
         ]
     },
     package_dir={"": "mikelint"}
