@@ -34,8 +34,8 @@ class StructureAnalyser(Analyser):
         """Checks if control structures are nested too deeply"""
         # line_start, line_end, block
         result: list[tuple[str, int, int, str]] = []
-        complexities: dict[NodeNG, int] = {}
         for filename, attr in self._sources.items():
+            complexities: dict[NodeNG, int] = {}
             for node in attr.tree.post_order():
                 if not isinstance(node, BlockRangeMixIn):
                     continue
