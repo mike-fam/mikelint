@@ -22,7 +22,7 @@ Checks violations in class vs instance usages
 #### check\_method\_call
 
 ```python
- | @register_check("Line {}: Method call treated as function instead of "
+ | @register_check("{}:{}: Method call treated as function instead of "
  |                     "member of instance:\n\t{}")
  | check_method_call()
 ```

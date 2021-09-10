@@ -25,8 +25,8 @@ access control practices
 #### check\_private\_attribute\_accessed\_outside\_class
 
 ```python
- | @register_check("Private attribute `{}` accessed outside class on line {}"
- |                     ":\n\t{}")
+ | @register_check("{}:{}: Private attribute `{}` accessed outside class:\n"
+ |                     "\t{}")
  | check_private_attribute_accessed_outside_class()
 ```
 
@@ -36,7 +36,7 @@ Checks if private attribute is accessed outside class
 #### check\_private\_attribute\_defined\_outside\_class
 
 ```python
- | @register_check("Private attribute `{}` defined outside class on line {}:\n"
+ | @register_check("{}:{}: Private attribute `{}` defined outside class:\n"
  |                     "\t{}")
  | check_private_attribute_defined_outside_class()
 ```
@@ -47,8 +47,8 @@ Checks if private attribute is defined outside class
 #### check\_public\_attribute\_defined\_self
 
 ```python
- | @register_check("Public attribute `{}` could have been private (line {}):"
- |                     "\n\t{}")
+ | @register_check("{}:{}: Public attribute `{}` could have been private:\n"
+ |                     "\t{}")
  | check_public_attribute_defined_self()
 ```
 

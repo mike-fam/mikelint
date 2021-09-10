@@ -29,8 +29,7 @@ Analyse good naming
 #### check\_variable\_snake\_case
 
 ```python
- | @register_check(error_format="Non snake-case variable '{}' defined on line "
- |                                  "{}:\n\t{}")
+ | @register_check(error_format="{}:{}: Non snake-case variable '{}':\n\t{}")
  | check_variable_snake_case()
 ```
 
@@ -40,8 +39,8 @@ Checks for non snake-case variable naming
 #### check\_method\_snake\_case
 
 ```python
- | @register_check(error_format="Non snake-case function/method name '{}' "
- |                                  "defined on line {}:\n\t{}")
+ | @register_check(error_format="{}:{}: Non snake-case function/method name "
+ |                                  "'{}':\n\t{}")
  | check_method_snake_case()
 ```
 
@@ -51,19 +50,18 @@ Checks for non snake-case function and method naming
 #### check\_attribute\_snake\_case
 
 ```python
- | @register_check(error_format="Non snake-case attribute '{}' defined on "
- |                                  "line {}:\n\t{}")
+ | @register_check(error_format="{}:{}: Non snake-case attribute '{}':\n\t{}")
  | check_attribute_snake_case()
 ```
 
-Checks for non snake-case attrbute naming
+Checks for non snake-case attribute naming
 
 <a name="analysers.naming.NamingAnalyser.check_potential_bad_variable_names"></a>
 #### check\_potential\_bad\_variable\_names
 
 ```python
- | @register_check(error_format="Potential bad variable name '{}' defined on "
- |                                  "line {}:\n\t{}")
+ | @register_check(error_format="{}:{}: Potential bad variable name '{}':\n"
+ |                                  "\t{}")
  | check_potential_bad_variable_names()
 ```
 
@@ -73,8 +71,8 @@ Checks for potential bad naming, i.e. names with 1-2 characters
 #### check\_hungarian\_notation\_variable
 
 ```python
- | @register_check(error_format="Hungarian notation variable '{}' used on "
- |                                  "line {}:\n\t{}")
+ | @register_check(error_format="{}:{}: Hungarian notation variable '{}':\n"
+ |                                  "\t{}")
  | check_hungarian_notation_variable()
 ```
 
@@ -84,8 +82,8 @@ Checks for variable names with hungarian notation
 #### check\_hungarian\_notation\_attribute
 
 ```python
- | @register_check(error_format="Hungarian notation attribute '{}' used on "
- |                                  "line {}:\n\t{}")
+ | @register_check(error_format="{}:{}: Hungarian notation attribute '{}':\n"
+ |                                  "\t{}")
  | check_hungarian_notation_attribute()
 ```
 
@@ -95,8 +93,8 @@ Checks for attribute names with hungarian notation
 #### check\_hungarian\_notation\_method
 
 ```python
- | @register_check(error_format="Hungarian notation in function/method name"
- |                                  " '{}' defined on line {}:\n\t{}")
+ | @register_check(error_format="{}:{}: Hungarian notation in function/method "
+ |                                  "name '{}':\n\t{}")
  | check_hungarian_notation_method()
 ```
 
@@ -106,7 +104,7 @@ Checks for hungarian notation function and method naming
 #### check\_constant\_naming
 
 ```python
- | @register_check("Line {}: Variables defined at global scope should be "
+ | @register_check("{}:{}: Variables defined at global scope should be "
  |                     "treated as constants:\n\t{}")
  | check_constant_naming()
 ```

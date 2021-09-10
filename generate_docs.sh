@@ -1,5 +1,5 @@
 rm -rf "docs/*"
-cd linter || exit 1
+cd mikelint || exit 1
 
 # Loop through all formatters and analysers
 for file in {analysers,formatters}/*.py; do

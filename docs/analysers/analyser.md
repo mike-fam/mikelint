@@ -41,7 +41,7 @@ Abstract base analyser
 #### \_\_init\_\_
 
 ```python
- | __init__(tree: SyntaxTree, source: list[str])
+ | __init__(sources: dict[str, AnalyserHelper])
 ```
 
 Constructor
@@ -70,7 +70,7 @@ Registers a new checker to this analyser
 #### get\_results
 
 ```python
- | get_results() -> dict[str, BaseViolation]
+ | get_results() -> AnalyserResults
 ```
 
 Returns results of all checkers of this analyser
@@ -93,7 +93,7 @@ Adds violation results to a checker
 #### get\_line
 
 ```python
- | get_line(line_number: int) -> str
+ | get_line(file_name: str, line_number: int) -> str
 ```
 
 Returns line given line number
