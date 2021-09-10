@@ -79,3 +79,24 @@ class StructureAnalyser(Analyser):
                         isinstance((pass_ := node.orelse[0]), Pass):
                     result.append((filename, pass_.lineno))
         return result
+
+    @register_check("{}:{}: Redundant boolean (in)equality\n{}")
+    def check_redundant_boolean_equality(self):
+        """ Check for condition == True or condition == False """
+        # filename, lineno, line
+        result: list[tuple[str, int, str]] = []
+        for filename, attr in self._sources.items():
+            for node in attr.tree.post_order():
+                if not isinstance(node, Compare):
+                    continue
+                for operator, right_side_node in node.ops:
+                    if operator != "==" and operator != "!=":
+                        continue
+                    if not isinstance(right_side_node, Const):
+                        continue
+                    right_side_value = right_side_node.value
+                    if not isinstance(right_side_value, bool):
+                        continue
+                    result.append((filename, node.lineno,
+                                   attr.source[node.lineno - 1]))
+        return result
