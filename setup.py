@@ -35,10 +35,5 @@ setup(
         "wrapt>=1.12"
     ],
     python_requires=">=3.8",
-    entry_points={
-        "console_scripts": [
-            "run=run:main",
-        ]
-    },
     # package_dir={"": ""}
 )
