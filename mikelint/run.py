@@ -1,20 +1,11 @@
 from pathlib import Path
 from typing import Type
 
-from astroid import parse, Module
-import argparse
 import yaml
+from astroid import parse, Module
 
-from .analysers import (
-    Analyser,
-    ClassInstanceAnalyser,
-    DocstringAnalyser,
-    EncapsulationAnalyser,
-    NamingAnalyser,
-    ScopeAnalyser,
-    StructureAnalyser
-)
-from .formatters import Formatter, BaseFormatter
+from .analysers import Analyser
+from .formatters import Formatter
 from .type_hints import AnalyserHelper
 from .utils.tree import SyntaxTree
 from .utils.violation import BaseViolation
@@ -58,27 +49,3 @@ class Run:
 
     def get_results(self):
         return self._results
-
-
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-c", "--config", help="Configuration file",
-                        required=True)
-    parser.add_argument("-s", "--source", help="Source file",
-                        required=True, action="append")
-    args = parser.parse_args()
-    analysers = [
-        ClassInstanceAnalyser,
-        DocstringAnalyser,
-        EncapsulationAnalyser,
-        NamingAnalyser,
-        ScopeAnalyser,
-        StructureAnalyser
-    ]
-    runner = Run(analysers, BaseFormatter, args.source, args.config)
-    runner.run()
-    runner.print_results()
-
-
-if __name__ == '__main__':
-    main()

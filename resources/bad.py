@@ -65,7 +65,7 @@ if True:
                 finally:
                     pass
 
-elif True:
+elif a == True:
     pass
 elif True:
     pass
