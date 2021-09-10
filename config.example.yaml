@@ -17,6 +17,7 @@ AlgorithmicLogic:
     Control Structures:
         - StructureAnalyser.check_structure_complexity
         - StructureAnalyser.check_structure_empty
+        - StructureAnalyser.check_redundant_boolean_equality
 Object-Oriented Program Structure:
     Classes & Instances:
         - ClassInstanceAnalyser

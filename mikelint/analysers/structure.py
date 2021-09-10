@@ -2,7 +2,7 @@
 Analyses code structure
 """
 from astroid.mixins import BlockRangeMixIn
-from astroid.node_classes import NodeNG
+from astroid.node_classes import NodeNG, Compare, Const
 from astroid import Pass, TryExcept
 
 from .analyser import Analyser, register_check
