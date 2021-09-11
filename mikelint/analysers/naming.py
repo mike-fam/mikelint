@@ -11,7 +11,8 @@ class NamingAnalyser(Analyser):
     CONSTANT_SNAKE_CASE = re.compile(r"(([A-Z_][A-Z0-9_]*)|(__.*__))$")
     HUNGARIAN_NOTATION = re.compile(r"(?<![^\W_\d])"
                                     r"(str|string|int|list|lst|dict|dictionary|"
-                                    r"tup|tuple|float|func|function|method)"
+                                    r"tup|tuple|float|func|function|method|"
+                                    r"char|character)"
                                     r"(?![^\W_\d])")
 
     @register_check(error_format="{}:{}: Non snake-case variable '{}':\n\t{}")
@@ -67,6 +68,7 @@ class NamingAnalyser(Analyser):
     def check_potential_bad_variable_names(self):
         """Checks for potential bad naming, i.e. names with 1-2 characters """
         results: list[tuple[str, int, str, str]] = []
+        whitelist = ['_']
         for filename, attr in self._sources.items():
             for node in attr.tree.pre_order():
                 if not isinstance(node, AssignName):
@@ -78,6 +80,9 @@ class NamingAnalyser(Analyser):
                     continue
 
                 if len(node.name) >= 3:
+                    continue
+
+                if node.name in whitelist:
                     continue
 
                 results.append((filename, node.lineno, node.name,
