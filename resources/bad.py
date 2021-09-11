@@ -100,3 +100,9 @@ if True:
 else:
     if True:
         pass
+
+hungarian_str = ""
+integration = 1
+middle_int_hey = 1
+dictator = 1
+mint = 2
