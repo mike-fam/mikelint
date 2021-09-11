@@ -9,11 +9,10 @@ class NamingAnalyser(Analyser):
     """Analyse good naming"""
     SNAKE_CASE = re.compile(r"[a-z_][a-z0-9_]{0,30}$")
     CONSTANT_SNAKE_CASE = re.compile(r"(([A-Z_][A-Z0-9_]*)|(__.*__))$")
-    # FIXME: might give false positives
-    HUNGARIAN_NOTATION = re.compile(r"(?<=[\W_])"
+    HUNGARIAN_NOTATION = re.compile(r"(?<![^\W_])"
                                     r"(str|string|int|list|lst|dict|dictionary|"
                                     r"tup|tuple|float|func|function|method)"
-                                    r"(?=[\W_])")
+                                    r"(?![^\W_])")
 
     @register_check(error_format="{}:{}: Non snake-case variable '{}':\n\t{}")
     def check_variable_snake_case(self):
