@@ -10,7 +10,7 @@ README = (HERE / "README.md").read_text()
 # This call to setup() does all the work
 setup(
     name="mikelint",
-    version="1.1.2",
+    version="1.1.3",
     description="Linter used for CSSE1001 at UQ",
     long_description=README,
     long_description_content_type="text/markdown",

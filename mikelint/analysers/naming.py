@@ -118,10 +118,13 @@ class NamingAnalyser(Analyser):
                                  "name '{}':\n\t{}")
     def check_hungarian_notation_method(self):
         """Checks for hungarian notation function and method naming """
+        whitelist = ["__str__"]
         results: list[tuple[str, int, str, str]] = []
         for filename, attr in self._sources.items():
             for node in attr.tree.pre_order():
                 if not isinstance(node, FunctionDef):
+                    continue
+                if node.name in whitelist:
                     continue
                 if not self.HUNGARIAN_NOTATION.search(node.name):
                     continue
