@@ -11,7 +11,8 @@ class NamingAnalyser(Analyser):
     CONSTANT_SNAKE_CASE = re.compile(r"(([A-Z_][A-Z0-9_]*)|(__.*__))$")
     HUNGARIAN_NOTATION = re.compile(r"(?<![^\W_])"
                                     r"(str|string|int|list|lst|dict|dictionary|"
-                                    r"tup|tuple|float|func|function|method)"
+                                    r"tup|tuple|float|func|function|method|chr|"
+                                    r"character)"
                                     r"(?![^\W_])")
 
     @register_check(error_format="{}:{}: Non snake-case variable '{}':\n\t{}")
