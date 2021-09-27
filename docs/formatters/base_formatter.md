@@ -1,24 +1,24 @@
 # Table of Contents
 
 * [formatters.base\_formatter](#formatters.base_formatter)
-  * [BaseFormatter](#formatters.base_formatter.BaseFormatter)
-    * [format\_violation](#formatters.base_formatter.BaseFormatter.format_violation)
+  * [SimpleFormatter](#formatters.base_formatter.SimpleFormatter)
+    * [format\_violation](#formatters.base_formatter.SimpleFormatter.format_violation)
 
 <a name="formatters.base_formatter"></a>
 # formatters.base\_formatter
 
 A simple formatter to display analyser output in similar format as testrunner
 
-<a name="formatters.base_formatter.BaseFormatter"></a>
-## BaseFormatter Objects
+<a name="formatters.base_formatter.SimpleFormatter"></a>
+## SimpleFormatter Objects
 
 ```python
-class BaseFormatter(Formatter)
+class SimpleFormatter(Formatter)
 ```
 
 Simple formatter with output similar to testrunner
 
-<a name="formatters.base_formatter.BaseFormatter.format_violation"></a>
+<a name="formatters.base_formatter.SimpleFormatter.format_violation"></a>
 #### format\_violation
 
 ```python

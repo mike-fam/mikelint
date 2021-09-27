@@ -57,7 +57,7 @@ found by the corresponding checker.
 Formatters take the output from analysers and converts it to a user-friendly string.
 All formatters must be subclasses of the abstract class `Formatter`, in 
 `linter.formatters.formatter_`. There are currently a single formatter, 
-namely `BaseFormatter`.
+namely `SimpleFormatter`.
 
 ### Implementation
 All formatters must override the `format` method from the abstract superclass.

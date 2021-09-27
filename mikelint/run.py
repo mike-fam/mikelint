@@ -6,9 +6,8 @@ from astroid import parse, Module
 
 from .analysers import Analyser
 from .formatters import Formatter
-from .type_hints import AnalyserHelper
+from .type_hints import AnalyserHelper, LintResults
 from .utils.tree import SyntaxTree
-from .utils.violation import BaseViolation
 
 
 class Run:
@@ -33,7 +32,7 @@ class Run:
 
         with open(config_file_name) as config_file:
             self._config = yaml.load(config_file, Loader=yaml.SafeLoader)
-        self._results: dict[str, dict[str, BaseViolation]] = {}
+        self._results: LintResults = {}
         # Uncomment to see source tree
         # print(module.repr_tree())
 

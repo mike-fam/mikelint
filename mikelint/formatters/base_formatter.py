@@ -13,7 +13,7 @@ BLOCK_TEMPLATE = """\
 """.format(HORIZONTAL_BORDER, BLOCK_WIDTH - 2)
 
 
-class BaseFormatter(Formatter):
+class SimpleFormatter(Formatter):
     """Simple formatter with output similar to testrunner"""
     def format(self) -> str:
         output = ""

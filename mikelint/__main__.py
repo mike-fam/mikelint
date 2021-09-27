@@ -1,8 +1,11 @@
 import argparse
 
-from .formatters import BaseFormatter
-from .analysers import ClassInstanceAnalyser, DocstringAnalyser, EncapsulationAnalyser, NamingAnalyser, \
+from .formatters import SimpleFormatter, JsonFormatter
+from .analysers import (
+    ClassInstanceAnalyser, DocstringAnalyser,
+    EncapsulationAnalyser, NamingAnalyser,
     ScopeAnalyser, StructureAnalyser
+)
 from .run import Run
 
 
@@ -12,6 +15,8 @@ def main():
                         required=True)
     parser.add_argument("-s", "--source", help="Source file",
                         required=True, action="append")
+    parser.add_argument("-j", "--json", help="Display JSON output",
+                        action="store_true", default=False)
     args = parser.parse_args()
     analysers = [
         ClassInstanceAnalyser,
@@ -21,7 +26,10 @@ def main():
         ScopeAnalyser,
         StructureAnalyser
     ]
-    runner = Run(analysers, BaseFormatter, args.source, args.config)
+    runner = Run(analysers,
+                 JsonFormatter if args.json else SimpleFormatter,
+                 args.source,
+                 args.config)
     runner.run()
     runner.print_results()
 

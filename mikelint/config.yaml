@@ -3,7 +3,7 @@ Readability:
         - StructureAnalyser.check_line_length
     Identifier Names:
         - NamingAnalyser
-    Symbolic Constants:
+    Named Constants:
         - ScopeAnalyser.check_magic_numbers_used
 Documentation:
     Comment Clarity: []

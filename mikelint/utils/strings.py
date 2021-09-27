@@ -1,6 +1,7 @@
 """
 String helper functions
 """
+import textwrap
 
 
 def indent(multiline_str: str, indented=4):
@@ -13,7 +14,7 @@ def indent(multiline_str: str, indented=4):
 
     Returns: Indented string
     """
-    return ("\n" + " " * indented).join(multiline_str.splitlines())
+    return textwrap.indent(multiline_str, " " * indented)
 
 
 def new_line(string: str):

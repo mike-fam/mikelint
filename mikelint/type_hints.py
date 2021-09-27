@@ -15,6 +15,8 @@ AnalyserResults = dict[str, BaseViolation]
 
 CheckOutput = dict[str, AnalyserResults]
 
+LintResults = dict[str, dict[str, BaseViolation]]
+
 
 @dataclass
 class AnalyserHelper:

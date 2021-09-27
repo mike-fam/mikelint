@@ -14,3 +14,4 @@ class BaseViolation:
     description: str
     format: str
     values: list[ViolationResult]
+    
