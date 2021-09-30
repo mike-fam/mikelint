@@ -1,3 +1,4 @@
+import sys
 from pathlib import Path
 from typing import Type
 
@@ -22,7 +23,8 @@ class Run:
                 with open(source_file_name) as fin:
                     source = fin.read()
             except FileNotFoundError:
-                print(f"{source_file_name} not found, skipping...")
+                print(f"{source_file_name} not found, skipping...",
+                      file=sys.stderr)
                 continue
             module: Module = parse(source)
             lines = source.splitlines()
