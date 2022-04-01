@@ -2,7 +2,7 @@ import argparse
 
 from .formatters import SimpleFormatter, JsonFormatter
 from .analysers import (
-    ClassInstanceAnalyser, DocstringAnalyser,
+    ClassInstanceAnalyser,
     EncapsulationAnalyser, NamingAnalyser,
     ScopeAnalyser, StructureAnalyser
 )
@@ -20,7 +20,6 @@ def main():
     args = parser.parse_args()
     analysers = [
         ClassInstanceAnalyser,
-        DocstringAnalyser,
         EncapsulationAnalyser,
         NamingAnalyser,
         ScopeAnalyser,

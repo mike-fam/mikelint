@@ -7,8 +7,7 @@ Readability:
         - ScopeAnalyser.check_magic_numbers_used
 Documentation:
     Comment Clarity: []
-    Informative Docstrings:
-        - DocstringAnalyser
+    Informative Docstrings: []
     Description of Logic: []
 Object-Oriented Program Structure:
     Classes & Instances:
