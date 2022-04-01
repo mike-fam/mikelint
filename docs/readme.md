@@ -8,7 +8,6 @@ Analysers are classes that directly perform static analysis on the target file.
 The analysers are defined in the `analysers` package. All analysers must be subclasses 
 of the `Analyser` class in `analysers.Analyser`. There are currently 6 analysers, namely:
 * `ClassInstanceAnalyser`
-* `DocstringAnalyser`
 * `EncapsulationAnalyser`
 * `NamingAnalyser`
 * `ScopeAnalyser`

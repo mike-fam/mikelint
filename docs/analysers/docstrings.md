@@ -1,5 +1,7 @@
 # Table of Contents
 
+**Currently disabled due to Python 3.10 pip bugs**
+
 * [analysers.docstrings](#analysers.docstrings)
   * [DocstringAnalyser](#analysers.docstrings.DocstringAnalyser)
     * [check\_class\_docstrings](#analysers.docstrings.DocstringAnalyser.check_class_docstrings)
