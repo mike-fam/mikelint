@@ -7,7 +7,7 @@ README = (HERE / "README.md").read_text()
 
 setup(
     name="mikelint",
-    version="1.2.2",
+    version="1.2.3",
     description="Linter used for CSSE1001 at UQ",
     long_description=README,
     long_description_content_type="text/markdown",
@@ -22,13 +22,8 @@ setup(
     packages=["mikelint"],
     include_package_data=True,
     install_requires=[
-        "astroid>=2.5",
-        "isort>=5.8",
-        "lazy-object-proxy>=1.6",
-        "mccabe>=0.6",
-        "PyYAML>=5.4",
-        "toml>=0.10",
-        "wrapt>=1.12"
+        "astroidi~=2.5",
+        "PyYAML~=5.4",
     ],
     python_requires=">=3.8",
     # package_dir={"": ""}
